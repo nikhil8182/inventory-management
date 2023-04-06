@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Flask App</title>
+        <script>
+            function showPopup() {
+                var popup = document.getElementById("popup");
+                popup.style.display = "block";
+                setTimeout(function() {
+                    popup.style.display = "none";
+                    window.location.href = "/";
+                }, 3000);
+            }
+        </script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: black;
+                color: white;
+            }
+            #popup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+                background-color: #333;
+                color: white;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+            #timer {
+                position: absolute;
+                bottom: -25px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 50px;
+                height: 5px;
+                background-color: green;
+                animation: timer 3s linear forwards;
+            }
+            @keyframes timer {
+                from { width: 50px; }
+                to { width: 0; }
+            }
+        </style>
+    </head>
+    <body onload="showPopup()">
+
+        <div id="popup">
+            Product created successfully!
+            <div id="timer"></div>
+        </div>
+    </body>
+</html>

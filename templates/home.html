@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>My Flask App</title>
+        <script>
+            function createProduct() {
+                window.location.href = "/create";
+            }
+            function point() {
+                window.location.href = "/point";
+            }
+        </script>
+        <style>
+
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+    color: white;
+  }
+
+  tr:nth-child(even) {
+    background-color: #333;
+  }
+
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+            body {
+                background-color: black;
+                color: white;
+            }
+            #create-button {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: green;
+                padding: 10px 30px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            #create-button img {
+                width: 20px;
+                height: 20px;
+                vertical-align: middle;
+            }
+                  #point-button {
+                position: absolute;
+                top: 10px;
+                right: 200px;
+                background-color: green;
+                padding: 10px 30px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            #point-button img {
+                width: 20px;
+                height: 20px;
+                vertical-align: middle;
+            }
+
+        </style>
+    </head>
+    <body>
+       <center> <h1>Onwords Inventory</h1></center>
+
+        <button id="create-button" onclick="createProduct()">
+
+            Create New Product
+        </button>
+        <button id="point-button" onclick="point()">
+
+            Calculate Points
+        </button>
+    <table>
+  <tr>
+    <th>Product ID</th>
+    <th>Name</th>
+    <th>Max Price</th>
+    <th>Min Price</th>
+    <th>Stock</th>
+
+  </tr>
+  {% for product in products %}
+    <tr>
+
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>₹ {{ product.max_price }} </td>
+      <td>₹ {{ product.min_price }} </td>
+      <td>{{ product.stock }}</td>
+
+    </tr>
+  {% endfor %}
+</table>
+
+    </body>
+</html>

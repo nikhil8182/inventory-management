@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+
+      body {
+        background-color: black;
+        color: white;
+      }
+      .button {
+        background-color: green;
+        color: white;
+      }
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+    color: white;
+  }
+
+  tr:nth-child(even) {
+    background-color: #333;
+  }
+
+  th {
+    background-color: #4CAF50;
+    color: white;
+  } .clear-table {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+    } h1 {
+        color: green;
+        font-size: 72px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body><br><br>
+
+  <form action="/add-product" method="POST">
+    Product id =
+    <select name="id" >
+        {% for id in pid %}
+            <option value="{{id}}">{{id}}</option>
+        {% endfor %}
+    </select>
+    Count = <input type="number" name="count" min="0" required>
+    <input type="hidden" value="0" name="discount">
+    <input type="submit" value="Add">
+</form>
+  <a href="/point" class="clear-table">Clear Table</a><br><br>
+    <table>
+      <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Count</th>
+        <th>Unit Price</th>
+        <th>Total Price</th>
+      </tr>
+      {% for product in products %}
+
+      <tr>
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.count }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.total_price }}</td>
+
+      </tr>
+      {% endfor %}
+    </table>
+<br><br>
+  {% if grandTotal %}
+
+  Subtotal :{{grandTotal}}<br><br>
+
+  <br>Minimum Subtotal = {{minTotal}} <br>
+
+  <br>Max Discount Price = {{mdp}}
+  <br><br>Max Discount Percentage = {{mdPrecentage}}
+
+  <br><br><form action="/discount" method="POST">
+      <label for="discount">Discount Percentage:</label>
+      <input type="number" id="discount" name="discount" value={{discountValue}} min="0" max="{{mdPrecentage}}">
+      <button type="submit">Apply</button>
+    </form>
+
+  <br><br>Discounted Total: {{discountTotal}}<br><br>
+   Gst : {{gst}}<br><br>
+  <br><br>Grand Total: {{finalTotal}}<br><br><br><br>
+  <h1>Points : {{points}}</h1>
+
+  {% endif %}
+
+<br>
+
+
+
+
+
+
+  <script>
+document.querySelectorAll('.delete-button').forEach(function(button) {
+    button.addEventListener('click', function() {
+        var row = this.closest('tr');
+        var productId = row.cells[0].textContent;
+        fetch('/delete-product', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: productId })
+        }).then(function() {
+            window.location.href = '/add-product';
+        });
+        row.remove();
+    });
+});
+
+
+  </script>
+  </body>
+</html>
+

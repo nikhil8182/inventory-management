@@ -1,0 +1,88 @@
+<html>
+<head>
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.login-container {
+  width: 800px;
+  height: 600px;
+  margin: 50px auto;
+  background-color: white;
+  border-radius: 40px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.login-header {
+  width: 100%;
+  height: 40%;
+  background-image: url("tech-banner.jpg");
+  background-size: cover;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+
+.login-logo {
+   width:100px;
+   height:100px;
+   position:absolute;
+   top:20%;
+   left:50%;
+   transform:translate(-50%, -50%);
+   border-radius:50%;
+   border:5px solid white;
+}
+
+.login-form {
+   padding:40px;
+}
+
+.login-input {
+   width:80%;
+   height:40px;
+   margin-bottom:20px;
+   border:none;
+   outline:none;
+   padding-left:10px;
+   background-color:#f0f0f0;
+}
+
+.login-button {
+   width:80%;
+   height:40px;
+   margin-top:20px;
+   border:none;
+   outline:none;
+   background-color:#0099ff;
+   color:white;
+}
+
+.login-footer {
+   padding:20px;
+   text-align:center;
+}
+
+.login-link {
+   color:#0099ff;
+}
+</style>
+</head>
+<body>
+<div class="login-container">
+<div class="login-header">
+<img src="tecky-logo.png" alt="Tecky logo" class="login-logo">
+</div>
+<div class="login-form">
+<input type="email" class="login-input" placeholder="Email address">
+<input type="password" class="login-input" placeholder="Password">
+<button class="login-button">Log in</button>
+</div>
+<div class="login-footer">
+<p>Don't have an account? <a href="#" class="login-link">Sign up</a></p>
+<p>Forgot your password? <a href="#" class="login-link">Reset it</a></p>
+</div>
+</div>
+</body>
+</html>
